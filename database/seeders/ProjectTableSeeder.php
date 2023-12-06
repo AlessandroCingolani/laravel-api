@@ -18,7 +18,7 @@ class ProjectTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $new_project = new Project();
             $new_project->type_id = Type::inRandomOrder()->first()->id;
             $new_project->name = $faker->sentence();
