@@ -23,5 +23,6 @@ Route::get('/types', [PageController::class, 'getTypes']);
 
 Route::get('/projects-by-type/{type_slug}', [PageController::class, 'getProjectsByType']);
 Route::get('/projects-by-technology/{technology_slug}', [PageController::class, 'getProjectsByTech']);
+Route::get('/projects/research/{tosearch}', [PageController::class, 'searchProjects']);
 
 Route::get('/projects/get-project/{slug}', [PageController::class, 'getSlugProject']);
