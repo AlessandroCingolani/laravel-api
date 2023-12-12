@@ -60,4 +60,10 @@ class PageController extends Controller
 
         return response()->json($technology);
     }
+
+    public function searchProjects($tosearch)
+    {
+        $projects = Project::where('name', 'LIKE', '%' . $tosearch . '%')->with('technologies', 'type')->paginate(10);
+        return response()->json($projects);
+    }
 }
