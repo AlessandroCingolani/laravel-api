@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Type;
+use App\Models\Technology;
 
 class PageController extends Controller
 {
@@ -30,5 +32,18 @@ class PageController extends Controller
         }
 
         return response()->json(compact('project', 'success'));
+    }
+
+
+    public function getTechs()
+    {
+        $technologies = Technology::all();
+        return response()->json($technologies);
+    }
+
+    public function getTypes()
+    {
+        $types = Type::all();
+        return response()->json($types);
     }
 }
