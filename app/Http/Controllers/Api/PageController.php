@@ -46,4 +46,18 @@ class PageController extends Controller
         $types = Type::all();
         return response()->json($types);
     }
+
+    public function getProjectsByType($type_slug)
+    {
+        $type = Type::where('slug', $type_slug)->with('projects')->first();
+
+        return response()->json($type);
+    }
+
+    public function getProjectsByTech($technology_slug)
+    {
+        $technology = Technology::where('slug', $technology_slug)->with('projects')->first();
+
+        return response()->json($technology);
+    }
 }
