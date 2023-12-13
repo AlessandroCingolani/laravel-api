@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Lead;
 
 class LeadController extends Controller
 {
@@ -31,6 +32,19 @@ class LeadController extends Controller
                 'message.min' => 'Message must be at least :min character'
             ]
         );
-        return response()->json($data);
+
+        if ($validator->fails()) {
+            $success = false;
+            $errors = $validator->errors();
+            return response()->json(compact('success', 'errors'));
+        }
+
+
+        $new_lead = new Lead();
+        $new_lead->fill($data);
+        $new_lead->save();
+
+        $success = true;
+        return response()->json(compact('success'));
     }
 }
