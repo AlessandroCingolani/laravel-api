@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Lead;
+use App\Mail\NewContact;
 
 class LeadController extends Controller
 {
@@ -43,6 +45,9 @@ class LeadController extends Controller
         $new_lead = new Lead();
         $new_lead->fill($data);
         $new_lead->save();
+
+        Mail::to('info@boolfolio.com')->send(new NewContact($new_lead));
+
 
         $success = true;
         return response()->json(compact('success'));
