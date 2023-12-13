@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Api\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::get('/projects-by-technology/{technology_slug}', [PageController::class, 
 Route::get('/projects/research/{tosearch}', [PageController::class, 'searchProjects']);
 
 Route::get('/projects/get-project/{slug}', [PageController::class, 'getSlugProject']);
+Route::post('/send-email', [LeadController::class, 'store']);
