@@ -10,12 +10,11 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 
-public $lead;
-
-
 class NewContact extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $lead;
 
     /**
      * Create a new message instance.
@@ -32,7 +31,7 @@ class NewContact extends Mailable
     {
         return new Envelope(
             subject: 'New Contact',
-            replyTo:$this->lead->email
+            replyTo: $this->lead->email
         );
     }
 
